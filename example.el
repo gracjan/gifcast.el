@@ -1,13 +1,3 @@
-Create screencasts of Emacs from coded scenarios
-================================================
-
-Create screencasts of Emacs sessions from coded scenarios.
-Write scenario in Emacs Lisp.
-
-Example
--------
-
-```elisp
 
 (require 'gifcast)
 
@@ -19,6 +9,11 @@ Example
      (kill-buffer "file.txt"))
    (switch-to-buffer (get-buffer-create "file.txt"))
    (delete-other-windows)
+   (tabbar-mode -1)
+   (tool-bar-mode -1)
+   (linum-mode -1)
+   (message nil)
+   (scroll-bar-mode -1)
 
    (insert (concat
             "The greeting is:\n"
@@ -41,14 +36,3 @@ Example
 
  (kill-buffer "file.txt")
  nil)
-
-```
-
-Executed with:
-
-
-```
-$EMACS -q -L . -l example.el -f gifcast-generate-batch-and-exit
-```
-
-Produces this animation:
