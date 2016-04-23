@@ -56,3 +56,65 @@ by running:
 ```
 $EMACS -q -L . -l example.el -f gifcast-generate-batch-and-exit
 ```
+
+Documentation
+-------------
+
+- `gifcast-animation name body`
+
+   A macro to declare animation named NAME. BODY is a list of form. Note that although body looks
+   like a function definition in reality each of the top level forms will be executed asynchronously from
+   a timer. This is done so that Emacs can react to user input and redraw the screen.
+   Only top level forms are executed separately.
+   
+- `gifcast-animation-0`
+
+  Delare animation as disabled so that neither `gifcast-generate-batch` nor `gifcast-generate-batch-and-exit` executes it.
+  
+- `gifcast-keys`
+
+  Add keys to processing queue to simulate user input events. For example `(gifcast-keys "Abc")` simulates a user entering
+  <kbd>A</kbd> then <kbd>b</kbd> then <kbd>c</kbd>. `(gifcast-keys (kbd "RET")` simulates a <kbd>RET</kbd>.
+
+- `gifcast-capture`
+
+  Capture current Emacs window as next animation frame. Optional parameter DURATION says how much time should this frame last
+  in milisecons, defaults to 100ms.
+  
+- `gifcast-generate`
+
+  Generate final animated GIF and save it to the path given as parameter.
+  
+- `gifcast-generate-batch`
+
+  Function to be called from command line to generate a set of animations. Usage:
+  
+      $EMACS -q -L . -l example.el -f gifcast-generate-batch
+  
+  Use full for debugging purposes because Emacs stays open after animations have run. For fully automated
+  animation generation use `gifcast-generate-batch-and-exit`.
+  
+- `gifcast-generate-batch-and-exit`
+  
+  Function to be called from command line to generate a set of animations. Usage:
+  
+      $EMACS -q -L . -l example.el -f gifcast-generate-batch-and-exit
+  
+
+Requirements
+------------
+
+- Mac OS X
+- Emacs that runs in GUI mode under Mac OS X (Aquamacs, Emacs)
+- `/usr/sbin/screencapture` -- comes with Mac OS X
+- `convert` from ImageMagic or GraphicsMagick
+
+Contributing
+------------
+
+I love receiving issue reports and pull requests! Use Github for that, official place to coordinate development is:
+
+https://github.com/gracjan/gifcast.el
+
+Have fun,
+Gracjan
