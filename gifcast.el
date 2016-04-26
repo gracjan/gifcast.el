@@ -253,4 +253,4 @@ animation."
   (and (get symbol 'gifcast--animation) t))
 
 (provide 'gifcast)
-;;; gifcast ends here
+;;; gifcast.el ends here
